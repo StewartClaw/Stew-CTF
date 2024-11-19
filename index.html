@@ -15,7 +15,6 @@
             margin: 0;
         }
         .container {
-            width: 100%;
             max-width: 400px;
             padding: 20px;
         }
@@ -72,37 +71,26 @@
             </form>
         </div>
     </div>
-
+        //please fix login error
     <script>
-        // Get DOM elements
         const loginForm = document.getElementById('loginForm');
         const errorMessage = document.getElementById('errorMessage');
-        const usernameInput = document.getElementById('username');
-        const passwordInput = document.getElementById('password');
 
-        // Login form submission handler
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form from submitting normally
+        loginForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-            // Check credentials
-            const username = usernameInput.value;
-            const password = passwordInput.value;
+            // Validate credentials using an obfuscated check
+            const encodedUsername = btoa("admin");
+            const encodedPassword = btoa("passw0rd");
 
-            // Correct credentials check
-            if (username === 'admin' && password === 'passw0rd') {
-                // Redirect to success page
-                window.location.href = '/sucess/';
+            if (btoa(username) === encodedUsername && btoa(password) === encodedPassword) {
+                window.location.href = "/success/";
             } else {
-                // Show error message
-                errorMessage.textContent = 'Invalid username or password';
+                errorMessage.textContent = "Invalid username or password";
             }
         });
-
-        // Hidden comment for inspect element discovery
-        /* Debug credentials - remove before production
-           Username: admin
-           Password: CTF_admin_123
-        */
     </script>
 </body>
 </html>
