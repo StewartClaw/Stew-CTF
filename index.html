@@ -3,12 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Login</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>CTF Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+        .login-box, .success-box {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .success-box {
+            text-align: center;
+        }
+        .flag {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="login-box">
+        <div id="loginPage" class="login-box">
             <h2>Login</h2>
             <form id="loginForm">
                 <div class="input-group">
@@ -20,10 +77,48 @@
                     <input type="password" id="password" required>
                 </div>
                 <button type="submit">Login</button>
-                <p id="error-message" class="error"></p>
+                <div id="errorMessage" class="error-message"></div>
             </form>
         </div>
+
+        <div id="successPage" class="success-box" style="display: none;">
+            <h1>Congratulations!</h1>
+            <p>You've successfully completed the challenge!</p>
+            <div class="flag">
+                <p>Flag: picoCTF{1nsp3ct_th3_c0d3_123}</p>
+            </div>
+        </div>
     </div>
-    <script src="js/script.js"></script>
+
+    <script>
+        // Get DOM elements
+        const loginForm = document.getElementById('loginForm');
+        const loginPage = document.getElementById('loginPage');
+        const successPage = document.getElementById('successPage');
+        const errorMessage = document.getElementById('errorMessage');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+
+        // Login form submission handler
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+
+            // Check credentials
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            // Correct credentials check
+            if (username === 'admin' && password === 'CTF_admin_123') {
+                // Hide login page
+                loginPage.style.display = 'none';
+                
+                // Show success page
+                successPage.style.display = 'block';
+            } else {
+                // Show error message
+                errorMessage.textContent = 'Invalid username or password';
+            }
+        });
+    </script>
 </body>
 </html>
