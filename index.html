@@ -15,10 +15,11 @@
             margin: 0;
         }
         .container {
+            width: 100%;
             max-width: 400px;
             padding: 20px;
         }
-        .login-box {
+        .login-box, .success-box {
             background-color: #ffffff;
             padding: 30px;
             border-radius: 8px;
@@ -51,11 +52,20 @@
             text-align: center;
             margin-top: 10px;
         }
+        .success-box {
+            text-align: center;
+        }
+        .flag {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="login-box">
+        <div id="loginPage" class="login-box">
             <h2>Login</h2>
             <form id="loginForm">
                 <div class="input-group">
@@ -70,25 +80,43 @@
                 <div id="errorMessage" class="error-message"></div>
             </form>
         </div>
+
+        <div id="successPage" class="success-box" style="display: none;">
+            <h1>Congratulations!</h1>
+            <p>You've successfully completed the challenge!</p>
+            <div class="flag">
+                <p>Flag: picoCTF{1nsp3ct_th3_c0d3_123}</p>
+            </div>
+        </div>
     </div>
-        //please fix login error
+
     <script>
+        // Get DOM elements
         const loginForm = document.getElementById('loginForm');
+        const loginPage = document.getElementById('loginPage');
+        const successPage = document.getElementById('successPage');
         const errorMessage = document.getElementById('errorMessage');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
 
-        loginForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        // Login form submission handler
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting normally
 
-            // Validate credentials using an obfuscated check
-            const encodedUsername = btoa("admin");
-            const encodedPassword = btoa("passw0rd");
+            // Check credentials
+            const username = usernameInput.value;
+            const password = passwordInput.value;
 
-            if (btoa(username) === encodedUsername && btoa(password) === encodedPassword) {
-                window.location.href = "/success/";
+            // Correct credentials check
+            if (username === 'admin' && password === 'CTF_admin_123') {
+                // Hide login page
+                loginPage.style.display = 'none';
+                
+                // Show success page
+                successPage.style.display = 'block';
             } else {
-                errorMessage.textContent = "Invalid username or password";
+                // Show error message
+                errorMessage.textContent = 'Invalid username or password';
             }
         });
     </script>
