@@ -19,7 +19,7 @@
             max-width: 400px;
             padding: 20px;
         }
-        .login-box, .success-box {
+        .login-box {
             background-color: #ffffff;
             padding: 30px;
             border-radius: 8px;
@@ -52,20 +52,11 @@
             text-align: center;
             margin-top: 10px;
         }
-        .success-box {
-            text-align: center;
-        }
-        .flag {
-            background-color: #f0f0f0;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 4px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="loginPage" class="login-box">
+        <div class="login-box">
             <h2>Login</h2>
             <form id="loginForm">
                 <div class="input-group">
@@ -80,21 +71,11 @@
                 <div id="errorMessage" class="error-message"></div>
             </form>
         </div>
-
-        <div id="successPage" class="success-box" style="display: none;">
-            <h1>Congratulations!</h1>
-            <p>You've successfully completed the challenge!</p>
-            <div class="flag">
-                <p>Flag: picoCTF{1nsp3ct_th3_c0d3_123}</p>
-            </div>
-        </div>
     </div>
 
     <script>
         // Get DOM elements
         const loginForm = document.getElementById('loginForm');
-        const loginPage = document.getElementById('loginPage');
-        const successPage = document.getElementById('successPage');
         const errorMessage = document.getElementById('errorMessage');
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
@@ -108,17 +89,20 @@
             const password = passwordInput.value;
 
             // Correct credentials check
-            if (username === 'admin' && password === 'CTF_admin_123') {
-                // Hide login page
-                loginPage.style.display = 'none';
-                
-                // Show success page
-                successPage.style.display = 'block';
+            if (username === 'admin' && password === 'passw0rd') {
+                // Redirect to success page
+                window.location.href = '/sucess/';
             } else {
                 // Show error message
                 errorMessage.textContent = 'Invalid username or password';
             }
         });
+
+        // Hidden comment for inspect element discovery
+        /* Debug credentials - remove before production
+           Username: admin
+           Password: CTF_admin_123
+        */
     </script>
 </body>
 </html>
