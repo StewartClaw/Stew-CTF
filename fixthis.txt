@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /hidden/
+# Debug: Remember to remove /hidden/ before production
