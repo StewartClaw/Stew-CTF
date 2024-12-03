@@ -2,27 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Files</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .login-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="content-box">
-            <h2>System Files</h2>
-            <div class="file-list">
-                <p>server_log.txt</p>
-                <p>backup.db</p>
-                <p>config.yml</p>
-            </div>
-            <!-- Hidden comment with credentials -->
-            <!-- 
-                Debug Notes:
-                Default admin credentials
-                username: admin_user
-                password: SQLin3ct!0n 
-            -->
+    <div class="login-box">
+        <h2>Login</h2>
+        <div class="input-group">
+            <label>Username:</label>
+            <input type="text" id="username">
         </div>
+        <div class="input-group">
+            <label>Password:</label>
+            <input type="password" id="password">
+        </div>
+        <button onclick="checkLogin()">Login</button>
+        <div id="errorMessage" class="error-message"></div>
     </div>
+
+    <script>
+        function checkLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === 'admin' && password === 'picoCTF{1nsp3ct_th3_c0d3_123}') {
+                window.location.href = '/success.html';
+            } else {
+                document.getElementById('errorMessage').textContent = 'Invalid credentials';
+            }
+        }
+    </script>
 </body>
 </html>

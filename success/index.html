@@ -2,18 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success!</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Challenge Completed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0ffe0;
+        }
+        .success-box {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .flag {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="success-box">
-            <h1>Congratulations!</h1>
-            <p>You've successfully completed the challenge!</p>
-            <div class="flag">
-                <p>Flag: picoCTF{1nsp3ct_th3_c0d3_123}</p>
-            </div>
+    <div class="success-box">
+        <h1>Congratulations!</h1>
+        <p>You've successfully completed the challenge!</p>
+        <div class="flag">
+            Flag: itc101{flag}
         </div>
     </div>
 </body>
